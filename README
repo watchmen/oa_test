@@ -28,7 +28,7 @@ oa = OAuthTest.new(
   :login  => 'y_login',
   :passwd => 'y_password'
 )
-oa.get('/get.json')
+oa.get('/me.json')
 
 ========================
 Thanks to: wh,rs,le,rchs
