@@ -1,6 +1,6 @@
+require 'json'
 require 'OAuth'
 require 'HTTParty'
-require 'active_support'
 
 class OAuthTest
  attr_accessor :host,:api
