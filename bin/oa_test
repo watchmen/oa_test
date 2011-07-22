@@ -1,0 +1,62 @@
+#!/usr/bin/env ruby
+def howto_oa_test
+puts <<END
+
+How to oa_test:
+~~~~~~~~~~~~~~~~~~~~~~~
+syntax:
+oa_test [--consumer:token/secret] --yauth:login/passwd [--return:body|boolean|object] [--host:host] [--api:path]
+
+Enjoy... 
+
+END
+
+end
+
+arg = ARGV 
+if arg.size>0
+  consumer = arg.select{|x|/^--consumer/=~x}[0]
+  yauth    = arg.select{|x|/^--yauth/=~x}[0]
+  retrn    = arg.select{|x|/^--return/=~x}[0]
+  host     = arg.select{|x|/^--host/=~x}[0]
+  api      = arg.select{|x|/^--api/=~x}[0]
+  
+  cons     = consumer.split(':')[1].split('/')
+  yths     =    yauth.split(':')[1].split('/')
+
+  require 'rubygems'
+  require 'oa_test'
+
+  OA = oa = OAuthTest.new(
+   :key    => cons[0].strip,
+   :secret => cons[1].strip,
+   :return => (retrn ? retrn.to_sym : :body)
+  ).yauth(
+   :login  => yths[0].strip,
+   :passwd => yths[1].strip
+  )
+  
+  # add constanta and action...
+  class Object
+    def oa
+      OA
+    end
+  end
+  
+  # remove non irb arguments...
+  ARGV.clear
+  (arg - [consumer,yauth,retrn,host,api].compact).each do |v|
+    ARGV.push v
+  end
+  
+  require 'irb'
+  puts ''
+  puts "PATH: #{oa.host}#{oa.api}<path>"
+  puts "Your instance object stored in OA|oa"
+  puts "Ex: oa.get '/me.json'"
+  puts ''
+  
+  IRB.start      
+else
+  howto_oa_test
+end
