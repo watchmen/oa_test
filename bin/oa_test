@@ -5,7 +5,7 @@ puts <<END
 How to oa_test:
 ~~~~~~~~~~~~~~~~~~~~~~~
 syntax:
-oa_test [--consumer:token/secret] --yauth:login/passwd [--return:body|boolean|object] [--host:host] [--api:path]
+oa_test [--consumer:token/secret] --yauth:login/passwd [--return:body|body_hash|boolean|object] [--host:host] [--api:path]
 
 Enjoy... 
 
@@ -30,7 +30,7 @@ if arg.size>0
   OA = oa = OAuthTest.new(
    :key    => cons[0].strip,
    :secret => cons[1].strip,
-   :return => (retrn ? retrn.to_sym : :body)
+   :return => (retrn ? retrn.split(':')[1].to_sym : :body)
   ).yauth(
    :login  => yths[0].strip,
    :passwd => yths[1].strip

@@ -3,9 +3,10 @@ $:.push File.expand_path("../lib", __FILE__)
 require "oa_test/version"
 
 Gem::Specification.new do |s|
-  s.add_development_dependency "oauth"   , ["~> 0.4.1"]
-  s.add_development_dependency "json"    , ["~> 0.5.1"]
-  s.add_development_dependency "httparty", ["~> 0.6.1"]
+  s.add_development_dependency "libxml-ruby", ["~> 1.1.4"]
+  s.add_development_dependency "oauth"      , ["~> 0.4.1"]
+  s.add_development_dependency "json"       , ["~> 0.5.1"]
+  s.add_development_dependency "httparty"   , ["~> 0.6.1"]
   s.name        = "oa_test"
   s.version     = Capykit::VERSION
   s.platform    = Gem::Platform::RUBY

@@ -8,9 +8,9 @@ class OAuthTest
  def initialize(ks)
    @key    = ks[:key]
    @secret = ks[:secret]
-   @return = ks[:return]
-   @host   = ks[:host] ? ks[:host] : 'http://www.koprol.com'
-   @api    = ks[:api]  ? ks[:api]  : '/api/v2'
+   @return = ks[:return] 
+   @host   = ks[:host]   ? ks[:host] : 'http://www.koprol.com'
+   @api    = ks[:api]    ? ks[:api]  : '/api/v2'
    @typ    = {
      :json => {"Accept" => "application/json", "Content-Type" => "application/json"},
      :xml  => {"Accept" => "application/xml", "Content-Type" => "application/xml"},
@@ -55,17 +55,24 @@ class OAuthTest
  end
  
  def typ(path)
-   ext = path[/.(json|xml)($|\?)/,1]
-   ext = 'json' if !ext
-   @typ[ext.to_sym]
+   @ext = path[/.(json|xml)($|\?)/,1]
+   @ext = 'json' if !@ext
+   @typ[@ext.to_sym]
  end
  
  def rtn(resp)
-   if @return==nil || @return==:body
+   puts resp.class
+   if @return==nil || resp.class!=Net::HTTPOK || @return==:body
      resp.body
+   elsif @return==:body_hash && resp.class==Net::HTTPOK 
+     if @ext=='json'
+       Hash.from_json(resp.body)
+     elsif @ext=='xml'
+       Hash.from_xml(resp.body)
+     end
    elsif @return==:boolean
      resp.class==Net::HTTPOK 
-   elsif @return==:object
+   else
      resp
    end
  end
