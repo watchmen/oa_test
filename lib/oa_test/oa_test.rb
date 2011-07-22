@@ -61,10 +61,10 @@ class OAuthTest
  end
  
  def rtn(resp)
-   if @return==nil || @return==:boolean
-     resp.class==Net::HTTPOK 
-   elsif @return==:body
+   if @return==nil || @return==:body
      resp.body
+   elsif @return==:boolean
+     resp.class==Net::HTTPOK 
    elsif @return==:object
      resp
    end
