@@ -12,7 +12,11 @@ PATH: http://www.koprol.com/api/v2/..path..
 Your instance object stored in OA|oa
 Ex: oa.get '/me.json'
 
-ree-1.8.7-2010.02 > oa.get '/me.json'
+ree-2010.02 > oa.public_methods nil
+ => ["api", "api=", "delete", "get", "host", "host=", "post", "put", "yauth"] 
+ree-2010.02 > oa.get '/me.json'
+ => "{"user":{...}}" 
+ree-2010.02 > 
 
 
 ========================
