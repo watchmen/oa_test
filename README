@@ -19,6 +19,17 @@ ree-2010.02 > oa.get '/me.json'
 ree-2010.02 > 
 
 
+Ruby code: 
+~~~~~~~~~~
+oa = OAuthTest.new(
+  :key    => 'consumer_token',
+  :secret => 'consumer_secret'
+).yauth(
+  :login  => 'y_login',
+  :passwd => 'y_password'
+)
+oa.get('/get.json')
+
 ========================
 Thanks to: wh,rs,le,rchs
 ------------------------
