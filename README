@@ -1,6 +1,10 @@
 oa_test: OAuth version 1.0x testing console
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+installation:
+~~~~~~~~~~~~~
+gem install oa_test
+
 command console: 
 ~~~~~~~~~~~~~~~~
 
