@@ -33,7 +33,8 @@ if arg.size>0
    :secret => cons[1],
    :return => (retrn ? retrn.split(':')[1].to_sym : :body),
    :host   => (host ? host.split(':')[1,99].join(':') : nil),
-   :api    => (api ? api.split(':')[1]: nil)
+   :api    => (api ? api.split(':')[1]: nil),
+   :file   => __FILE__
   ).
   yauth(
    :login  => yths[0].strip,

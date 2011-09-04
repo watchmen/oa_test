@@ -10,16 +10,19 @@ command console:
 ~~~~~~~~~~~~~~~~
 
 syntax:
-~~~~~~~
--/>oa_test [--consumer:token/secret] --yauth:login/passwd [--return:body|body_hash|boolean|object] [--host:host] [--api:path]
+oa_test [--consumer:token/secret] --yauth:login/passwd [--return:body|body_hash|boolean|object] [--host:host] [--api:path]
+params --host must prefix with "http://"
+params --api must prefix with "/"
+Enjoy... 
+
+Read config: ~/.oa_test
 
 PATH: http://www.koprol.com/api/v2/..path..
-Your instance object stored in OA|oa
-Ex: oa.get '/me.json'
+Your instance object stored in OA|oa|http
+The response object: http.resp
+Ex: http.get '/me.json'
 
-ree-2010.02 > oa.public_methods nil
- => ["api", "api=", "delete", "get", "host", "host=", "post", "put", "yauth"] 
-ree-2010.02 > oa.get '/me.json'
+ree-2010.02 > http.get '/me.json'
  => "{"user":{...}}" 
 ree-2010.02 > 
 

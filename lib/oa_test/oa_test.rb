@@ -12,10 +12,11 @@ class OAuthTest
     @secret = config.secret
     @return = config.return 
     @host   = config.host   
-    @api    = config.api    
+    @api    = config.api
+    @irb    = (config.file ? config.file=~/bin\/oa_test$/ : false)
     @typ    = {
      :json => {"Accept" => "application/json", "Content-Type" => "application/json"},
-     :xml  => {"Accept" => "application/xml", "Content-Type" => "application/xml"},
+     :xml  => {"Accept" => "application/xml",  "Content-Type" => "application/xml"},
     }
   end
 
@@ -24,18 +25,22 @@ class OAuthTest
   end
 
   def get(path)
+    puts "GET #{@host+@api+path}" if @irb
     rtn @access_token.get(@host+@api+path,typ(path))
   end
 
   def post(path,params)
+    puts "POST #{@host+@api+path}, body:#{params.inspect}" if @irb
     rtn @access_token.post(@host+@api+path,params.to_json,typ(path))
   end
 
   def put(path,params)
+    puts "PUT #{@host+@api+path}, body:#{params.inspect}" if @irb
     rtn @access_token.put(@host+@api+path,params.to_json,typ(path))
   end
 
   def delete(path)
+    puts "DELETE #{@host+@api+path}" if @irb
     rtn @access_token.delete(@host+@api+path,typ(path))
   end
 
@@ -64,7 +69,7 @@ class OAuthTest
 
   def rtn(resp)
     @resp = resp
-    puts resp.class
+    puts resp.class if @irb
     if @return==nil || resp.class!=Net::HTTPOK || @return==:body
       resp.body
     elsif @return==:body_hash && resp.class==Net::HTTPOK 

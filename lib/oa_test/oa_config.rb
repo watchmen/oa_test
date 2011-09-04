@@ -35,8 +35,9 @@ class OAuthTest
     @config.api    = ks[:api]    if ks[:api]
     
     @config.return = ks[:return] if ks[:return]
+    @config.file   = ks[:file]   if ks[:file]
     
-    if ks[:key] || ks[:secret] || ks[:return] || ks[:host] || ks[:api]
+    if ks[:key] || ks[:secret] || ks[:return] || ks[:host] || ks[:api] || ks[:file]
       File.open(File.expand_path("~/.oa_test"),'w') { |f| f.puts @config.to_yaml }
     end
   end  
