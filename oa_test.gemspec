@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "oa_test/version"
+require "oa_test/oa_test_version"
 
 Gem::Specification.new do |s|
   s.add_development_dependency "libxml-ruby", ["~> 1.1.4"]
@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "json"       , ["~> 0.5.1"]
   s.add_development_dependency "httparty"   , ["~> 0.6.1"]
   s.name        = "oa_test"
-  s.version     = Capykit::VERSION
+  s.version     = OaTestVersion::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Watchmen"]
   s.email       = ["watchmencore@yahoo.com"]
